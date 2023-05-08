@@ -79,7 +79,7 @@ export default function Game() {
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
-  const [moves, setMoves] = useState([]);
+  const [currentMoves, setMoves] = useState([]);
   const [isSwap, setSwaped] = useState(false);
 
   function handlePlay(nextSquares) {
@@ -91,9 +91,9 @@ export default function Game() {
 
   function reorderMoves(swit) {
     if (!swit) {
-      setMoves([...movesR].reverse());
+      setMoves([...moves].reverse());
     } else {
-      setMoves([...movesR]);
+      setMoves([...moves]);
     }
   }
 
@@ -101,7 +101,7 @@ export default function Game() {
     setCurrentMove(nextMove);
   }
 
-  const movesR = history.map((squares, move) => {
+  const moves = history.map((squares, move) => {
     let description;
     if (move === 0) {
       description = "Go to game start";
@@ -141,7 +141,7 @@ export default function Game() {
             setSwaped(!isSwap);
           }}
         />
-        <ul>{moves}</ul>
+        <ul>{currentMoves}</ul>
       </div>
     </div>
   );
